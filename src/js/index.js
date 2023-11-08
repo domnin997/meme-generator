@@ -100,10 +100,16 @@ const managePanel = document.querySelector('.manage-panel-wrap');
 let shiftX,
     shiftY;
 
-    let offsetNEW;
+    let offsetNEW,
+        offsetYNEW;
 
 dragHandle.addEventListener('mousedown', (e) => {
+
+    dragHandle.ondragstart = function() {
+        return false;
+      };
     offsetNEW = inputWrap.getBoundingClientRect().right - e.clientX;
+    offsetYNEW = e.clientY - inputWrap.getBoundingClientRect().top;
     // let shiftX = e.clientX - inputWrap.getBoundingClientRect().left;
     // let shiftY = e.clientY - inputWrap.getBoundingClientRect().top;
     shiftX = e.clientX - window.getComputedStyle(inputWrap).left.replace(/[a-zA-Z]/g, '');
@@ -131,7 +137,9 @@ dragHandle.addEventListener('mousedown', (e) => {
         const panelLeft = inputWrap.getBoundingClientRect().x;
         const newLeft = event.clientX - shiftX;
         const rightBorder = document.querySelector('.input-area').getBoundingClientRect().right;
+        const bottomBorder = document.querySelector('.input-area').getBoundingClientRect().bottom;
         const newRight = event.clientX + offsetNEW;
+        const newBottom = event.clientY + offsetYNEW;
         const newTop = event.clientY - shiftY;
 
 
@@ -139,10 +147,10 @@ dragHandle.addEventListener('mousedown', (e) => {
         currFormX = (inputWrap.getBoundingClientRect().x - document.querySelector('.input-area').getBoundingClientRect().x);
         currFormY = (inputWrap.getBoundingClientRect().y - document.querySelector('.input-area').getBoundingClientRect().y);
 
-        console.log(currFormX,currFormY);
+        // console.log(currFormX,currFormY);
         
-        console.log(newRight)
-        console.log(rightBorder - newRight);
+        console.log(offsetYNEW)
+      
         
         if (newLeft < 0) {
             inputWrap.style.left = '-1px';
@@ -154,6 +162,8 @@ dragHandle.addEventListener('mousedown', (e) => {
         
         if (newTop < 0) {
             inputWrap.style.top = '-1px';
+        } else if ((bottomBorder - event.clientY) < 0) {
+            inputWrap.style.top = `${500 - offsetYNEW}px`;
         } else {
             yMoveAt(event.pageY);
         }
