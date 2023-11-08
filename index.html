@@ -11,22 +11,50 @@
     <header>Генератор мемов</header>
     <main class="main">
         <div class="canvas-wrap">
+            
             <div class="input-area">
                 <div class="input-wrap">
-                <textarea type="text"
-                       class="some-data"
-                       placeholder="Ваш текст"></textarea>
-                <input type="text"
-                        class="font-input"
-                        placeholder="18">
-                <input type="color"
-                        class="color-input"
-                        >
-                 <div>
-                    <button class="submit-btn">Добавить</button>
-                </div>
+                    <div class="input-cont">
+                        <div class="drag-handle"></div>
+                        <div class="resizer right-resizer"></div>
+                        <div class="resizer left-resizer"></div>
+                    <div class="text-area-wrap">
+                        <textarea type="text"
+                            class="some-data"
+                            placeholder="Ваш текст">
+                        </textarea>
+                    </div>
+                    <div class="manage-panel-wrap">
+                        <div class="font-panel__wrap">
+                            <h2 class="font-panel-header">Шрифт</h2>
+                            <div class="font-panel__manage-size">
+                                <button class="font-plus-btn font-btn">+</button>
+                                <div class="font-size-cont"> 18 </div>
+                                <button class="font-minus-btn font-btn">-</button>
+                            </div>
+                    
+                        </div>
+                        <!-- <input type="text"
+                                class="font-input"
+                                placeholder="18"
+                        /> -->
+                        <div class="color-panel__wrap">
+                            <h2 class="color-panel-header">Цвет</h2>
+                            <input type="color"
+                                   class="color-input"
+                            />
+                        </div>
+                        <div>
+                            <button class="submit-btn">Добавить</button>
+                        </div>
+                        <div class="manage-panel-close-cont">
+                            <p>&times;</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+            </div>
+
             <canvas class="canvas"></canvas>
             <div class="work-panel">
                 Work panel
@@ -35,6 +63,9 @@
         <div class="uploader-cont">
             <input class='uploader' 
                    type="file">
+        </div>
+        <div>
+            <a id="resultDownload" href="#" download>Сохранить результат</a>
         </div>
     </main>
 <script src="./src/js/index.js"></script>
