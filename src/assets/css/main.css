@@ -43,7 +43,7 @@ h1, h2, h3 {
     gap: 15px;
 }
 
-.input-wrap {
+.add-meme-window {
     width: 70%;
     /* padding: 5px; */
     position: absolute;
@@ -106,6 +106,8 @@ input[type='color'] {
     align-items: center;
     display: flex;
     box-sizing: border-box;
+    border: none;
+    background-color: aquamarine;
 }
 
 .canvas-wrap {
@@ -143,7 +145,7 @@ input[type='color'] {
     z-index: 2;
 }
 
-.some-data {
+.meme-text {
     opacity: 1;
     font-size: 25px;
     width: 100%;

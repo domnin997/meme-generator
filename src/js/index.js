@@ -11,16 +11,12 @@ let canvasCurrWidth,
     imgDataUrl;
 
 let currFontSize = 25;
-console.log(canvasStockHight, canvasStockWidth);
 
-
-let changeRatio,
-    widthRatio,
+let widthRatio,
     heightRatio;
 
 let currFormX,
     currFormY;
-
 
 uploader.addEventListener('change', (e) => {
     const myFile = uploader.files[0];
@@ -31,140 +27,117 @@ uploader.addEventListener('change', (e) => {
         canvasCurrHeight = this.naturalHeight;
         canvas.width = this.naturalWidth;
         canvasCurrWidth = this.naturalWidth;
-        
         ctx.drawImage(img, 0 , 0);
         ctx.fillStyle = '#ff2e2e'
         ctx.font = 'bold 50px sans-serif';
-        changeRatio = canvasCurrHeight/canvasStockHight;
+
         heightRatio = canvasCurrHeight/canvasStockHight;
         widthRatio = canvasCurrWidth/canvasStockWidth;
-        // ctx.fillText('Some text', 150, 150);
     }
 })
 
-function addInput () {
-    const input = document.createElement('textarea');
-    input.classList.add('text-input');
-    input.placeholder = 'Введите'
-    canvas.append(input);
-}
-
-const inputField = document.querySelector('.some-data');
 const submitBtn = document.querySelector('.submit-btn');
 const colorInput = document.querySelector('.color-input');
-const fontSize = document.querySelector('.font-input');
 
-inputField.addEventListener('input', () => {
-    console.log(inputField.value);
+// Работа с размерами шрифта
+
+const fontIncrease = document.querySelector('.font-plus-btn');
+const fontDecrease = document.querySelector('.font-minus-btn');
+const fontSizeCont = document.querySelector('.font-size-cont');
+const memeInput = document.querySelector('.meme-text');
+
+fontIncrease.addEventListener('click', () => {
+    ++currFontSize;
+        fontSizeCont.innerText = currFontSize;
+            memeInput.style.cssText = `font-size: ${currFontSize}px`;
+});
+
+fontDecrease.addEventListener('click', () => {
+    --currFontSize;
+        fontSizeCont.innerText = currFontSize;
+            memeInput.style.cssText = `font-size: ${currFontSize}px`;
 })
 
-// fontSize.addEventListener('input', () => {
-//     fontS = fontSize.value;
-//     currFontSize = fontS;
-//     console.log(fontS)
-//     inputField.style.cssText = `font-size: ${fontS}px`;
-// })
-
 submitBtn.addEventListener('click', () => {
-    const text = inputField.value;
-    // ctx.font = `bold ${Math.round(+fontSize.value * changeRatio)}px sans-serif`;
-    ctx.font = `bold ${Math.round(+currFontSize * changeRatio)}px sans-serif`;
+    const text = memeInput.value;
+    ctx.font = `bold ${Math.round(+currFontSize * heightRatio)}px sans-serif`;
     ctx.fillStyle = `${colorInput.value}`;
-    
-    
-    ctx.fillText(`${text}`, currFormX*widthRatio+20, currFormY*heightRatio+20);
-    console.log(currFontSize);
-    // console.log(+fontSize.value * changeRatio);
-
+    ctx.fillText(`${text}`, currFormX*widthRatio+10, currFormY*heightRatio+40);
 
     imgDataUrl = canvas.toDataURL('image/png');
 
     downloadRes.href = imgDataUrl;
 })
 
-const inputWrap = document.querySelector('.input-wrap');
-
-
-inputWrap.addEventListener('pointerdown', (e) => {
-    console.log(e.clientX);
-    console.log(inputWrap.getBoundingClientRect().x);
-})
-
-// canvas.addEventListener('click', addInput);
-
-
 // Функия перемещения панели
+const addMemeWindow = document.querySelector('.add-meme-window');
 const dragHandle = document.querySelector('.drag-handle');
 const managePanel = document.querySelector('.manage-panel-wrap');
 
 let shiftX,
     shiftY;
 
-    let offsetNEW,
-        offsetYNEW;
+let leftOffset,
+    rightOffset,
+    topOffset;
 
 dragHandle.addEventListener('mousedown', (e) => {
+    
+    shiftX = e.clientX - window.getComputedStyle(addMemeWindow).left.replace(/[a-zA-Z]/g, '');
+    shiftY = e.clientY - window.getComputedStyle(addMemeWindow).top.replace(/[a-zA-Z]/g, '');
 
     dragHandle.ondragstart = function() {
         return false;
-      };
-    offsetNEW = inputWrap.getBoundingClientRect().right - e.clientX;
-    offsetYNEW = e.clientY - inputWrap.getBoundingClientRect().top;
-    // let shiftX = e.clientX - inputWrap.getBoundingClientRect().left;
-    // let shiftY = e.clientY - inputWrap.getBoundingClientRect().top;
-    shiftX = e.clientX - window.getComputedStyle(inputWrap).left.replace(/[a-zA-Z]/g, '');
-    shiftY = e.clientY - window.getComputedStyle(inputWrap).top.replace(/[a-zA-Z]/g, '');
+    };
 
-    console.log(`PageX: ${e.pageX}, event.clientX${e.clientX}, shift ${shiftX}`)
-    // moveAt(e.pageX, e.pageY);
-
+    rightOffset = addMemeWindow.getBoundingClientRect().right - e.clientX;
+    leftOffset = e.clientX - addMemeWindow.getBoundingClientRect().left;
+    topOffset = e.clientY - addMemeWindow.getBoundingClientRect().top;
+    
     function yMoveAt (pageY) {
-        inputWrap.style.top = pageY - shiftY + 'px';
+        addMemeWindow.style.top = pageY - shiftY + 'px';
     }
 
     function xMoveAt (pageX) {
-        inputWrap.style.left = pageX - shiftX + 'px';
-    }
-
-
-    function moveAt(pageX, pageY) {
-        inputWrap.style.left = pageX - shiftX + 'px';
-        inputWrap.style.top = pageY - shiftY + 'px';
+        addMemeWindow.style.left = pageX - shiftX + 'px';
     }
 
     function onMouseMove(event) {
-        const inputFieldX = document.querySelector('.input-area').getBoundingClientRect().x;
-        const panelLeft = inputWrap.getBoundingClientRect().x;
+        const canvasField = document.querySelector('.input-area');
+
         const newLeft = event.clientX - shiftX;
-        const rightBorder = document.querySelector('.input-area').getBoundingClientRect().right;
-        const bottomBorder = document.querySelector('.input-area').getBoundingClientRect().bottom;
-        const newRight = event.clientX + offsetNEW;
-        const newBottom = event.clientY + offsetYNEW;
+        
+        const rightCanvasBorder = canvasField.getBoundingClientRect().right;
+        const leftCanvasBorder = canvasField.getBoundingClientRect().left;
+        
+        const bottomCanvasBorder = canvasField.getBoundingClientRect().bottom;
+
+        const newMemeWindowRight = event.clientX + rightOffset;
+        const newMemeWindowLeft = event.clientX - leftOffset;
+        
         const newTop = event.clientY - shiftY;
 
+        currFormX = (addMemeWindow.getBoundingClientRect().x - canvasField.getBoundingClientRect().x);
+        currFormY = (addMemeWindow.getBoundingClientRect().y - canvasField.getBoundingClientRect().y);
 
-
-        currFormX = (inputWrap.getBoundingClientRect().x - document.querySelector('.input-area').getBoundingClientRect().x);
-        currFormY = (inputWrap.getBoundingClientRect().y - document.querySelector('.input-area').getBoundingClientRect().y);
-
-        // console.log(currFormX,currFormY);
         
-        console.log(offsetYNEW)
-      
-        
-        if (newLeft < 0) {
-            inputWrap.style.left = '-1px';
-        } else if ((rightBorder - newRight) < 0) {
-            inputWrap.style.right = '-1px';
-        } else {
+        if (newMemeWindowLeft < leftCanvasBorder) {
+            addMemeWindow.style.left = '0px';
+        } 
+        else if (newMemeWindowRight > rightCanvasBorder) {
+            addMemeWindow.style.right = '0px';
+        } 
+        else {
             xMoveAt(event.pageX);
         }
         
         if (newTop < 0) {
-            inputWrap.style.top = '-1px';
-        } else if ((bottomBorder - event.clientY) < 0) {
-            inputWrap.style.top = `${500 - offsetYNEW}px`;
-        } else {
+            addMemeWindow.style.top = '-1px';
+        } 
+        else if (event.clientY > bottomCanvasBorder) {
+            addMemeWindow.style.top = `${500 - topOffset}px`;
+        }
+        else {
             yMoveAt(event.pageY);
         }
     }
@@ -177,4 +150,25 @@ dragHandle.addEventListener('mousedown', (e) => {
     };   
 })
 
-console.log(document.querySelector('.input-area').getBoundingClientRect().right)
+
+// Блок с изменением размера рабочего поля
+
+    const element = document.querySelector('.add-meme-window');
+    const resizer = document.querySelector('.resizer');
+
+    resizer.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+        document.addEventListener('mousemove', resize);
+        document.addEventListener('mouseup', stopResize);
+    })
+    
+    function resize(e) {
+      const newWidth = e.clientX - element.getBoundingClientRect().left;
+        if (newWidth > 180 && newWidth < 350) {
+            element.style.width = `${newWidth}px`;
+        }
+    }
+ 
+    function stopResize() {
+        document.removeEventListener('mousemove', resize);
+    }
