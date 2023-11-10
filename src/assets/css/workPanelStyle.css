@@ -1,0 +1,96 @@
+.work-panel {
+    width: 250px;
+    height: 500px;
+    background-color: aliceblue;
+}
+
+.work-panel__h2-cont {
+    padding: 15px 5px 10px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.work-panel__description {
+    padding: 5px 8px 5px 8px;
+    font-size: 15px;
+}
+
+.work-panel__settings-cont {
+    padding: 15px 5px 15px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.color-panel-header, .font-panel-header {
+    font-size: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.color-panel__wrap, .font-panel__wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.font-panel-wrap {
+    display: flex;
+}
+
+.font-panel__manage-size {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 2px 0 2px;
+}
+
+.font-size-cont {
+    font-weight: 600;
+    font-size: 20px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.font-btn {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-weight: 600;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(215, 130, 2, 0.819);
+}
+
+.submit-btn-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-btn {
+    width: 130px;
+    height: 30px;
+    border: none;
+    background-color: rgb(38, 38, 104);
+    color: rgb(211, 210, 210);
+    padding: 3px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+}
+
+.submit-btn:hover {
+    color: rgb(255, 255, 255);
+}

@@ -53,9 +53,12 @@ fontIncrease.addEventListener('click', () => {
 });
 
 fontDecrease.addEventListener('click', () => {
-    --currFontSize;
-        fontSizeCont.innerText = currFontSize;
-            memeInput.style.cssText = `font-size: ${currFontSize}px`;
+    if (currFontSize > 1) {
+        --currFontSize;
+            fontSizeCont.innerText = currFontSize;
+                memeInput.style.cssText = `font-size: ${currFontSize}px`;
+    }
+    
 })
 
 submitBtn.addEventListener('click', () => {
@@ -164,7 +167,7 @@ dragHandle.addEventListener('mousedown', (e) => {
     
     function resize(e) {
       const newWidth = e.clientX - element.getBoundingClientRect().left;
-        if (newWidth > 180 && newWidth < 350) {
+        if (newWidth > 130 && newWidth < 350) {
             element.style.width = `${newWidth}px`;
         }
     }

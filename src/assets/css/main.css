@@ -1,3 +1,18 @@
+@import url(./headerStyle.css);
+@import url(./workPanelStyle.css);
+@import url(./bottomStyle.css);
+
+html {
+    font-family: Roboto;
+}
+
+.body {
+    background-color:rgb(236, 236, 236);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 * {
 	padding: 0px;
 	margin: 0px;
@@ -64,28 +79,13 @@ textarea:focus {
 
 .manage-panel-wrap {
     display: flex;
-    justify-content: space-between;
-    background-color: rgb(151, 151, 151);
+    justify-content: center;
+    background-color: rgb(38, 38, 104);
     width: 100%;
     border-top: 1px solid black;
     padding: 2px 0 2px 0;
 }
 
-.color-panel-header, .font-panel-header {
-    font-size: 10px;
-    text-align: center;
-}
-
-.font-panel-wrap {
-    display: flex;
-}
-
-.font-panel__manage-size {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 0 2px 0 2px;
-}
 
 input[type='color'] {
     block-size: 20px;
@@ -95,19 +95,6 @@ input[type='color'] {
     padding: 0;
     appearance: none;
     outline: none;
-}
-
-.font-btn {
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    box-sizing: border-box;
-    border: none;
-    background-color: aquamarine;
 }
 
 .canvas-wrap {
@@ -125,14 +112,10 @@ input[type='color'] {
     -webkit-box-shadow: 0px 10px 20px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 0px 10px 20px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 0px 10px 20px 0px rgba(34, 60, 80, 0.2);
+    background-color: white;
     /* object-fit:contain; */
 }
 
-.work-panel {
-    width: 250px;
-    height: 500px;
-    background-color: aliceblue;
-}
 
 
 .input-area {
@@ -191,19 +174,27 @@ input[type='color'] {
     border-color: aqua;
     background-color: brown;
     left: 50%;
-    bottom: -6px;
+    bottom: -7px;
     cursor: move;
 }
 
-.submit-btn-cont {
+
+
+
+
+.download-result-btn {
     display: flex;
-    align-items: center;
+    width: 200px;
+    height: 40px;
+    border-radius: 8px;
     justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: rgb(38, 38, 104);
+    color: rgb(211, 210, 210);
+    transition-duration: 0.4s;
 }
 
-.submit-btn {
-    border: none;
-    background-color: aquamarine;
-    padding: 3px;
-    border-radius: 4px;
+.download-result-btn:hover {
+    color: rgb(255, 255, 255);
 }

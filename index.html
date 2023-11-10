@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="./src/assets/css/main.css">
-    <title>Document</title>
+    <title>Генератор мемов</title>
 </head>
-<body>
-    <header>Генератор мемов</header>
+<body class="body">
+    <header class="header">
+        <h1 class="header__h1">Генератор мемов</h1>
+        <div>Создай мем на основании любой картинки</div>
+    </header>
     <main class="main">
         <div class="canvas-wrap">
             
@@ -23,7 +28,8 @@
                                   placeholder="Ваш текст"></textarea>
                     </div>
                     <div class="manage-panel-wrap">
-                        <div class="font-panel__wrap">
+                        
+                        <!-- <div class="font-panel__wrap">
                             <h2 class="font-panel-header">Шрифт</h2>
                             <div class="font-panel__manage-size">
                                 <button class="font-plus-btn font-btn">+</button>
@@ -31,20 +37,17 @@
                                 <button class="font-minus-btn font-btn">-</button>
                             </div>
                     
-                        </div>
+                        </div> -->
 
-                        <div class="color-panel__wrap">
+                        <!-- <div class="color-panel__wrap">
                             <h2 class="color-panel-header">Цвет</h2>
                             <input type="color"
                                    class="color-input"
                             />
-                        </div>
-                        <div class="submit-btn-cont">
+                        </div> -->
+                        <!-- <div class="submit-btn-cont">
                             <button class="submit-btn">Добавить</button>
-                        </div>
-                        <div class="manage-panel-close-cont">
-                            <p>&times;</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -52,15 +55,55 @@
 
             <canvas class="canvas"></canvas>
             <div class="work-panel">
-                Work panel
+                <div class="work-panel__h2-cont">
+                    <h2 class="work-panel__h2">Инструкция</h2>
+                </div>
+                <div class="work-panel__description">
+                    <p> Чтобы создать свой мем, загрузите картинку с компьютера.
+                        Перетащите рамку с надпсью в нужное место картинки и выберете стиль
+                        текста с помощью панели управления ниже. Размер рамки можно менять за правый край.
+                    </p>
+                </div>
+                <div class="work-panel__settings-cont">
+                    <div class="color-panel__wrap">
+                        <h2 class="color-panel-header">Цвет</h2>
+                        <input type="color"
+                               class="color-input"
+                        />
+                    </div>
+                    <div class="font-panel__wrap">
+                        <h2 class="font-panel-header">Шрифт</h2>
+                        <div class="font-panel__manage-size">
+                            <button class="font-plus-btn font-btn">+</button>
+                            <div class="font-size-cont"><span>25</span></div>
+                            <button class="font-minus-btn font-btn">-</button>
+                        </div>
+                
+                    </div>
+                    <div class="submit-btn-cont">
+                        <button class="submit-btn">Добавить</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="uploader-cont">
-            <input class='uploader' 
+            <input id="uploader_input"
+                   class='uploader'
                    type="file">
+            <label class="input__file-button" for="uploader_input">
+                <span class="input__file-icon-wrapper">
+                    <img class="input__file-icon" 
+                         src="./src/assets/img/upload.png" 
+                         alt="Выбрать файл" 
+                         width="25">
+                </span>
+                <span class="input__file-button-text">Выберите файл</span>
+            </label>
         </div>
-        <div>
-            <a id="resultDownload" href="#" download>Сохранить результат</a>
+        <div class="download-result-btn-cont">
+            <a class="download-result-btn" 
+               id="resultDownload" 
+               href="#" download><span>Сохранить результат</span></a>
         </div>
     </main>
 <script src="./src/js/index.js"></script>
