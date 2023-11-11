@@ -1,6 +1,8 @@
+@import url(./reset_style.css);
 @import url(./headerStyle.css);
 @import url(./workPanelStyle.css);
 @import url(./bottomStyle.css);
+@import url(./canvasAreaStyle.css);
 
 html {
     font-family: Roboto;
@@ -13,43 +15,6 @@ html {
     gap: 20px;
 }
 
-* {
-	padding: 0px;
-	margin: 0px;
-}
-
-input, textarea, button, select {
-	font-family: inherit;
-    font-size: inherit;
-    color: inherit;
-    background-color: transparent;
-}
-
-button, input[type="submit"] {
-    display: inline-block;
-    box-shadow: none;
-    background-color: transparent;
-    background: none;
-    cursor: pointer;
-}
-
-
-input:focus, input:active,
-button:focus, button:active {
-    outline: none;
-}
-
-button::-moz-focus-inner {
-	padding: 0;
-	border: 0;
-}
-
-h1, h2, h3 {
-    padding: 0;
-    margin: 0;
-    font-size: inherit;
-}
-
 .main {
     display: flex;
     flex-direction: column;
@@ -57,130 +22,6 @@ h1, h2, h3 {
     align-items: center;
     gap: 15px;
 }
-
-.add-meme-window {
-    width: 70%;
-    /* padding: 5px; */
-    position: absolute;
-    background-color: rgba(255,255,255,0.1);
-    cursor: pointer;
-}
-
-textarea:focus {
-    outline: none;
-}
-
-.input-cont {
-    border: 2px solid black;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-}
-
-.manage-panel-wrap {
-    display: flex;
-    justify-content: center;
-    background-color: rgb(38, 38, 104);
-    width: 100%;
-    border-top: 1px solid black;
-    padding: 2px 0 2px 0;
-}
-
-
-input[type='color'] {
-    block-size: 20px;
-    inline-size: 20px;
-    border-radius: 50%;
-    border: none;
-    padding: 0;
-    appearance: none;
-    outline: none;
-}
-
-.canvas-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    position: relative;
-}
-
-.canvas {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    -webkit-box-shadow: 0px 10px 20px 0px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 0px 10px 20px 0px rgba(34, 60, 80, 0.2);
-    box-shadow: 0px 10px 20px 0px rgba(34, 60, 80, 0.2);
-    background-color: white;
-    /* object-fit:contain; */
-}
-
-
-
-.input-area {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 500px;
-    height: 500px;
-    background-color: rgba(255,255,255,0);
-    z-index: 2;
-}
-
-.meme-text {
-    opacity: 1;
-    font-size: 25px;
-    width: 100%;
-    height: 40px;
-    resize: none;
-    padding: 0;
-    border: none;
-}
-
-.text-input {
-    position: absolute;
-    width: 100px;
-    height: 50px;
-    z-index: 10;
-    max-width: 500px;
-}
-
-.resizer {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border-color: aqua;
-    background-color: brown;
-}
-
-.right-resizer {
-    top: 50%;
-    right: -4px;
-    cursor: col-resize;
-}
-
-.left-resizer {
-    bottom: -5px;
-    left: -5px;
-}
-
-.drag-handle {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border-color: aqua;
-    background-color: brown;
-    left: 50%;
-    bottom: -7px;
-    cursor: move;
-}
-
-
-
-
 
 .download-result-btn {
     display: flex;
