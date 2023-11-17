@@ -2,12 +2,12 @@ import handleCanvas from "./canvasScript.js";
 import handleTextPanelMovement from "./moveTextPanel.js";
 import handleTextPanelChange from "./changeTextPanelSize.js";
 import handleFontSizeChange from "./textSizeChanger.js";
+import manageAppState from "./appStateManager.js";
 
-window.currFontSize = 25;
-window.currFormX = 0;
-window.currFormY = 0;
+const {getFontSize, decreaseFont, increaseFont, getTextFormX,
+       setTextFormX, getTextFormY, setTextFormY} = manageAppState();
 
-handleCanvas();
-handleTextPanelMovement();
+handleCanvas(getFontSize, getTextFormX, getTextFormY);
+handleTextPanelMovement(setTextFormX, setTextFormY);
 handleTextPanelChange();
-handleFontSizeChange();
+handleFontSizeChange(decreaseFont, increaseFont, getFontSize);

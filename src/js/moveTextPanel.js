@@ -1,4 +1,4 @@
-export default function handleTextPanelMovement () {
+export default function handleTextPanelMovement (setTextFormX, setTextFormY) {
     
     const addMemeWindow = document.querySelector('.add-meme-window');
     const dragHandle = document.querySelector('.drag-handle');
@@ -33,7 +33,8 @@ export default function handleTextPanelMovement () {
 
         function onMouseMove(event) {
             const canvasField = document.querySelector('.input-area');
-        
+            const canvasFieldHeight = window.getComputedStyle(canvasField).height.replace(/[a-zA-Z]/g, '');
+            
             const rightCanvasBorder = canvasField.getBoundingClientRect().right;
             const leftCanvasBorder = canvasField.getBoundingClientRect().left;
         
@@ -44,8 +45,8 @@ export default function handleTextPanelMovement () {
         
             const newTop = event.clientY - shiftY;
 
-            window.currFormX = (addMemeWindow.getBoundingClientRect().x - canvasField.getBoundingClientRect().x);
-            window.currFormY = (addMemeWindow.getBoundingClientRect().y - canvasField.getBoundingClientRect().y);
+            setTextFormX((addMemeWindow.getBoundingClientRect().x - canvasField.getBoundingClientRect().x));
+            setTextFormY((addMemeWindow.getBoundingClientRect().y - canvasField.getBoundingClientRect().y));
         
             if (newMemeWindowLeft < leftCanvasBorder) {
                 addMemeWindow.style.left = '0px';
@@ -61,7 +62,7 @@ export default function handleTextPanelMovement () {
                 addMemeWindow.style.top = '-1px';
             } 
             else if (event.clientY > bottomCanvasBorder) {
-                addMemeWindow.style.top = `${500 - topOffset}px`;
+                addMemeWindow.style.top = `${canvasFieldHeight - topOffset}px`;
             }
             else {
                 yMoveAt(event.pageY);

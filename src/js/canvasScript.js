@@ -1,4 +1,4 @@
-export default function handleCanvas () {
+export default function handleCanvas (getFontSize, getTextFormX, getTextFormY) {
 
     const canvas = document.querySelector('.canvas');
     const context = canvas.getContext('2d');
@@ -43,9 +43,9 @@ export default function handleCanvas () {
         
         const text = memeInput.value;
         
-        context.font = `bold ${Math.round(+currFontSize * heightRatio)}px sans-serif`;
+        context.font = `bold ${Math.round(getFontSize() * heightRatio)}px sans-serif`;
         context.fillStyle = `${colorInput.value}`;
-        context.fillText(`${text}`, currFormX*widthRatio+10, currFormY*heightRatio+40);
+        context.fillText(`${text}`, getTextFormX()*widthRatio+10, getTextFormY()*heightRatio+40);
     
         imgDataUrl = canvas.toDataURL('image/png');
     

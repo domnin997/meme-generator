@@ -1,4 +1,4 @@
-export default function handleFontSizeChange () {
+export default function handleFontSizeChange (decreaseFont, increaseFont, getFontSize) {
     
     const fontIncrease = document.querySelector('.font-plus-btn');
     const fontDecrease = document.querySelector('.font-minus-btn');
@@ -6,16 +6,18 @@ export default function handleFontSizeChange () {
     const memeInput = document.querySelector('.meme-text');
 
     fontIncrease.addEventListener('click', () => {
-        ++currFontSize;
-            fontSizeCont.innerText = currFontSize;
-                memeInput.style.cssText = `font-size: ${currFontSize}px`;
+        increaseFont();
+            const currFont = getFontSize();
+                fontSizeCont.innerText = currFont;
+                    memeInput.style.cssText = `font-size: ${currFont}px`;
     });
 
     fontDecrease.addEventListener('click', () => {
-        if (currFontSize > 1) {
-            --currFontSize;
-                fontSizeCont.innerText = currFontSize;
-                    memeInput.style.cssText = `font-size: ${currFontSize}px`;
+        if (getFontSize() > 1) {
+            decreaseFont();
+                const currFont = getFontSize();
+                    fontSizeCont.innerText = currFont;
+                        memeInput.style.cssText = `font-size: ${currFont}px`;
         }  
     })
 }
